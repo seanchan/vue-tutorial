@@ -1,0 +1,42 @@
+<html>
+    <head>
+<script src="./js/vue/dist/vue.js"></script>
+<script src="./js/axios/dist/axios.min.js"></script>
+
+    </head>
+    <body>
+        <div id="watch">
+            ask question: <input v-model="question"/>
+            <p>{{answer}}</p>
+            {{question}}
+        </div>
+        <script>
+            var c = new Vue({
+                el:"#watch",
+                data:{
+                    question:"test111",
+                    answer:""
+                },
+                watch:{
+                    question:function(newQ){
+                         this.answer + newQ + "123";
+                         this.searchAnswer();
+                    }
+                },
+                methods:{
+                    searchAnswer:function(){
+                        var vm = this;
+                        var url = "http://api.caishencai.com/api/pl3/pnumtrend/limit/50";
+                        axios.get(url)
+                            .then(function(response){
+                                vm.answer=response;
+                                console.log(response);
+                            }).catch(function(error){
+                                vm.answer = "nonono" + error;
+                            });
+                    }
+                }
+            });
+            </script>
+    </body>
+</html>
