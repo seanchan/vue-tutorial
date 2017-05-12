@@ -1,0 +1,32 @@
+<html>
+    <head>
+<script src="./js/vue/dist/vue.js"></script>
+
+    </head>
+    <body>
+        <div id="filter">
+            {{ msg |capitalize|end}}
+            
+        </div>
+        <script>
+            var filter = new Vue({
+                el:"#filter",
+                data:{
+                    msg:"test"
+                },
+                filters:{
+                    capitalize:function(value){
+                        if(!value)return "";
+                        value = value.toString();
+                        return value.charAt(0).toUpperCase() + value.slice(1);
+                    },
+                    end:function(value){
+                        if(!value)return "";
+                        value = value.toString();
+                        return value + "-end";
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

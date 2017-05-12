@@ -1,0 +1,21 @@
+<html>
+    <head>
+<script src="./js/vue/dist/vue.js"></script>
+
+    </head>
+    <body>
+        <div id="value-control">
+            {{ msg }}
+            <span v-once>{{msg}}</span>
+        </div>
+
+        <script>
+            var vc = new Vue({
+                el:"#value-control",
+                data:{
+                    msg: 123
+                }
+            });
+        </script>
+    </body>
+</html>
