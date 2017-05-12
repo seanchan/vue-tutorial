@@ -1,0 +1,46 @@
+<html>
+    <head>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+    </head>
+    <body>
+        <div id="lifecycle">
+        </div>
+        <script>
+            var lifecycle = new Vue({
+                el:"#lifecycle",
+                data:{
+                    a : 1,
+                    b : 2
+                },
+                beforeCreate:function(){
+                    console.log("beforeCreated");
+                    console.log(this.a);
+                },
+                created:function(){
+                    console.log("created" + this.b);
+                },
+                beforeMount:function(){
+                    console.log("beforeMount" + this.$el);
+                },
+                mounted:function(){
+                    console.log("mounted" + this.$el);
+                },
+                beforeUpdate:function(){
+                    console.log("beforeUpdate");
+                },
+                updated:function(){
+                    console.log("updated");
+                },
+                beforeDestroy:function(){
+                    console.log("before Destroy");
+                },
+                destroyed:function(){
+                    console.log("destroyed");
+                }
+
+            });
+
+        </script>
+    </body>
+</html>
