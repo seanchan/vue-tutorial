@@ -1,0 +1,112 @@
+<html>
+    <head>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+    </head>
+    <body>
+        <div id="app">
+        {{ message }}
+        </div>
+        <div id="app-2">
+            <span v-bind:title="message">
+                test 2
+            </span>
+        </div>
+        <div id="app-3">
+            <p v-if="seen"> show me ?
+            </p>
+        </div>
+        <div id="app-4">
+            <ul>
+                <li v-for="todo in todos">
+                    {{ todo.text }}
+                    </li>
+            </ul>
+        </div>
+        <div id="app-5">
+            <p>{{ message }}</p>
+            <button v-on:click="testReverse">reverse</button>
+        </div>
+        <div id="app-6">
+            <p>{{ message }}</p>
+            <input v-model="message">
+        </div>
+        <div id="app-7">
+            <ol>
+                <!--<todo-item v-for="item in items" v-bind:what="item"></todo-item>-->
+                <todo-item v-bind:what="item"></todo-item>
+            </ol>
+        </div>
+        <script>
+            var app = new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue!'
+  }
+});
+            var app2 = new Vue({
+                el:"#app-2",
+                data:{
+                    message:"load at " + new Date()
+                }
+            });
+
+            var app3 = new Vue(
+                {
+                    el:"#app-3",
+                    data:{
+                        seen:true
+                    }
+                }
+            );
+            var app4 = new Vue({
+                el:"#app-4",
+                data:{
+                    todos:[
+                        {text:"todo 1"},
+                        {text:"todo 2"},
+                        {text:"todo 3"},
+                        
+                    ]
+                }
+            });
+            var app5 = new Vue({
+                el:"#app-5",
+                data:{
+                    message : "test111",
+                },
+                methods:{
+                    testReverse:function(){
+                        this.message = this.message.split("").reverse().join("");
+                    }
+                }
+            });
+            var app6 = new Vue({
+                el:"#app-6",
+                data:{
+                    message:""
+                }
+            });
+            Vue.component("todo-item",{
+                props:['what'],
+                template:"<li>{{what.text}}</li>"
+            });
+            var app7 = new Vue({
+                el:"#app-7",
+                data:{
+                    items:[
+                        {text:"item1"},
+                        {text:"item2"},
+                        {text:"item3"}
+                    ],
+                    item:{text:"single item"}
+                }
+            });
+
+            var MyComponent = Vue.extend({
+
+            });
+            var myComponentInstance = new MyComponent();
+        </script>
+    </body>
+</html>
